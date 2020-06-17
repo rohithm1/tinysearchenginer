@@ -1,0 +1,517 @@
+gcc -Wall -pedantic -std=c11 -ggdb -I../libcs50 -I../common   -c -o querier.o querier.c
+gcc -Wall -pedantic -std=c11 -ggdb -I../libcs50 -I../common querier.o /usr/lib/x86_64-linux-gnu/libm.so ../libcs50/libcs50-given.a ../common/common.a -lm ../libcs50/libcs50-given.a ../common/common.a -o querier
+bash -v testing.sh 
+#!/bin/bash
+# testing.sh - bash file for indexer.c
+# Rohith Mandavilli, CS50 - David Kotz, May 2019
+# Description: We need to test the thoroughness of our querier.c 
+
+cd ../indexer
+mkdir testDir
+mkdir: cannot create directory ‘testDir’: File exists
+
+#Make sure crawler code has output to be used in the querier code
+cd ../crawler/
+./crawler http://old-www.cs.dartmouth.edu/~campbell/index.html ../indexer/testDir 1
+ 0   Fetched: http://old-www.cs.dartmouth.edu/~campbell/index.html
+ 0  Scanning: http://old-www.cs.dartmouth.edu/~campbell/index.html
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/./
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 0     Found: http://dartnets.cs.dartmouth.edu/
+ 0  IgnExtrn: http://dartnets.cs.dartmouth.edu/
+ 0     Found: http://studentlife.cs.dartmouth.edu/
+ 0  IgnExtrn: http://studentlife.cs.dartmouth.edu/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0  IgnExtrn: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0     Found: http://studentlife.cs.dartmouth.edu/
+ 0  IgnExtrn: http://studentlife.cs.dartmouth.edu/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0  IgnExtrn: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0     Found: https://goo.gl/maps/GEbhZkhe7Z72
+ 0  IgnExtrn: https://goo.gl/maps/GEbhZkhe7Z72
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/./
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/
+
+# Normal code command to demonstrate functionality (non existing file to write to)
+cd ../indexer/
+./indexer testDir result
+
+#bad file
+cd ../querier/
+valgrind ./quququqqu ../indexer/testDir ../indexer/result
+valgrind: ./quququqqu: No such file or directory
+
+#bad pathname
+valgrind ./querier ../indexer/tesetDir ../indexer/result
+==1722== Memcheck, a memory error detector
+==1722== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1722== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1722== Command: ./querier ../indexer/tesetDir ../indexer/result
+==1722== 
+Pathname doesn't exist
+==1722== 
+==1722== HEAP SUMMARY:
+==1722==     in use at exit: 0 bytes in 0 blocks
+==1722==   total heap usage: 5 allocs, 5 frees, 1,203 bytes allocated
+==1722== 
+==1722== All heap blocks were freed -- no leaks are possible
+==1722== 
+==1722== For counts of detected and suppressed errors, rerun with: -v
+==1722== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#bad file to read from
+valgrind ./querier ../indexer/testDir ../indexer/results
+==1723== Memcheck, a memory error detector
+==1723== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1723== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1723== Command: ./querier ../indexer/testDir ../indexer/results
+==1723== 
+The file is not readable/existing
+==1723== 
+==1723== HEAP SUMMARY:
+==1723==     in use at exit: 0 bytes in 0 blocks
+==1723==   total heap usage: 5 allocs, 5 frees, 1,202 bytes allocated
+==1723== 
+==1723== All heap blocks were freed -- no leaks are possible
+==1723== 
+==1723== For counts of detected and suppressed errors, rerun with: -v
+==1723== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#Normal code to demonstrate functionality
+echo dartmouth computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1725== Memcheck, a memory error detector
+==1725== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1725== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1725== Command: ./querier ../indexer/testDir ../indexer/result
+==1725== 
+Query in use: dartmouth computer science
+
+Matches 7 documents (ranked): 
+score    3 doc    1: http://old-www.cs.dartmouth.edu/~campbell/index.html
+score    3 doc   10: http://old-www.cs.dartmouth.edu/~campbell/
+score    1 doc    2: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+score    1 doc    3: http://old-www.cs.dartmouth.edu/~campbell/page/
+score    1 doc    4: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+score    1 doc    6: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+score    1 doc    8: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+==1725== 
+==1725== HEAP SUMMARY:
+==1725==     in use at exit: 0 bytes in 0 blocks
+==1725==   total heap usage: 9,549 allocs, 9,549 frees, 438,281 bytes allocated
+==1725== 
+==1725== All heap blocks were freed -- no leaks are possible
+==1725== 
+==1725== For counts of detected and suppressed errors, rerun with: -v
+==1725== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth or computer or science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1727== Memcheck, a memory error detector
+==1727== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1727== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1727== Command: ./querier ../indexer/testDir ../indexer/result
+==1727== 
+Query in use: dartmouth or computer or science
+
+Matches 9 documents (ranked): 
+score   10 doc    1: http://old-www.cs.dartmouth.edu/~campbell/index.html
+score   10 doc   10: http://old-www.cs.dartmouth.edu/~campbell/
+score    4 doc    2: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+score    4 doc    5: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+score    2 doc    4: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+score    1 doc    3: http://old-www.cs.dartmouth.edu/~campbell/page/
+score    1 doc    6: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+score    1 doc    8: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+score    1 doc    9: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+==1727== 
+==1727== HEAP SUMMARY:
+==1727==     in use at exit: 0 bytes in 0 blocks
+==1727==   total heap usage: 9,555 allocs, 9,555 frees, 439,623 bytes allocated
+==1727== 
+==1727== All heap blocks were freed -- no leaks are possible
+==1727== 
+==1727== For counts of detected and suppressed errors, rerun with: -v
+==1727== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#Capital letters
+echo DARTMOUTH OR COMPUTER OR SCIENCE | valgrind ./querier ../indexer/testDir ../indexer/result
+==1729== Memcheck, a memory error detector
+==1729== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1729== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1729== Command: ./querier ../indexer/testDir ../indexer/result
+==1729== 
+Query in use: dartmouth or computer or science
+
+Matches 9 documents (ranked): 
+score   10 doc    1: http://old-www.cs.dartmouth.edu/~campbell/index.html
+score   10 doc   10: http://old-www.cs.dartmouth.edu/~campbell/
+score    4 doc    2: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+score    4 doc    5: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+score    2 doc    4: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+score    1 doc    3: http://old-www.cs.dartmouth.edu/~campbell/page/
+score    1 doc    6: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+score    1 doc    8: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+score    1 doc    9: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+==1729== 
+==1729== HEAP SUMMARY:
+==1729==     in use at exit: 0 bytes in 0 blocks
+==1729==   total heap usage: 9,555 allocs, 9,555 frees, 439,623 bytes allocated
+==1729== 
+==1729== All heap blocks were freed -- no leaks are possible
+==1729== 
+==1729== For counts of detected and suppressed errors, rerun with: -v
+==1729== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#only white space
+echo                 | valgrind ./querier ../indexer/testDir ../indexer/result
+==1731== Memcheck, a memory error detector
+==1731== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1731== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1731== Command: ./querier ../indexer/testDir ../indexer/result
+==1731== 
+==1731== 
+==1731== HEAP SUMMARY:
+==1731==     in use at exit: 0 bytes in 0 blocks
+==1731==   total heap usage: 9,493 allocs, 9,493 frees, 433,029 bytes allocated
+==1731== 
+==1731== All heap blocks were freed -- no leaks are possible
+==1731== 
+==1731== For counts of detected and suppressed errors, rerun with: -v
+==1731== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#complex query
+echo dartmouth and computer science or fish and capital or home besides me | valgrind ./querier ../indexer/testDir ../indexer/result
+==1733== Memcheck, a memory error detector
+==1733== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1733== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1733== Command: ./querier ../indexer/testDir ../indexer/result
+==1733== 
+Query in use: dartmouth and computer science or fish and capital or home besides me
+
+Matches 7 documents (ranked): 
+score    3 doc    1: http://old-www.cs.dartmouth.edu/~campbell/index.html
+score    3 doc   10: http://old-www.cs.dartmouth.edu/~campbell/
+score    1 doc    2: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+score    1 doc    3: http://old-www.cs.dartmouth.edu/~campbell/page/
+score    1 doc    4: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+score    1 doc    6: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+score    1 doc    8: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+==1733== 
+==1733== HEAP SUMMARY:
+==1733==     in use at exit: 0 bytes in 0 blocks
+==1733==   total heap usage: 9,553 allocs, 9,553 frees, 438,442 bytes allocated
+==1733== 
+==1733== All heap blocks were freed -- no leaks are possible
+==1733== 
+==1733== For counts of detected and suppressed errors, rerun with: -v
+==1733== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#word doesnt exist in the index data struct
+echo sciec | valgrind ./querier ../indexer/testDir ../indexer/result
+==1735== Memcheck, a memory error detector
+==1735== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1735== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1735== Command: ./querier ../indexer/testDir ../indexer/result
+==1735== 
+Query in use: sciec
+
+No documents match
+==1735== 
+==1735== HEAP SUMMARY:
+==1735==     in use at exit: 0 bytes in 0 blocks
+==1735==   total heap usage: 9,498 allocs, 9,498 frees, 433,063 bytes allocated
+==1735== 
+==1735== All heap blocks were freed -- no leaks are possible
+==1735== 
+==1735== For counts of detected and suppressed errors, rerun with: -v
+==1735== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#using numbers and bad characters
+echo dartmouth 1234 computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1737== Memcheck, a memory error detector
+==1737== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1737== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1737== Command: ./querier ../indexer/testDir ../indexer/result
+==1737== 
+Error: bad character '1' in query
+==1737== 
+==1737== HEAP SUMMARY:
+==1737==     in use at exit: 0 bytes in 0 blocks
+==1737==   total heap usage: 9,495 allocs, 9,495 frees, 433,093 bytes allocated
+==1737== 
+==1737== All heap blocks were freed -- no leaks are possible
+==1737== 
+==1737== For counts of detected and suppressed errors, rerun with: -v
+==1737== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth34 computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1739== Memcheck, a memory error detector
+==1739== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1739== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1739== Command: ./querier ../indexer/testDir ../indexer/result
+==1739== 
+Error: bad character '3' in query
+==1739== 
+==1739== HEAP SUMMARY:
+==1739==     in use at exit: 0 bytes in 0 blocks
+==1739==   total heap usage: 9,495 allocs, 9,495 frees, 433,087 bytes allocated
+==1739== 
+==1739== All heap blocks were freed -- no leaks are possible
+==1739== 
+==1739== For counts of detected and suppressed errors, rerun with: -v
+==1739== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth computer1 science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1741== Memcheck, a memory error detector
+==1741== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1741== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1741== Command: ./querier ../indexer/testDir ../indexer/result
+==1741== 
+Error: bad character '1' in query
+==1741== 
+==1741== HEAP SUMMARY:
+==1741==     in use at exit: 0 bytes in 0 blocks
+==1741==   total heap usage: 9,495 allocs, 9,495 frees, 433,085 bytes allocated
+==1741== 
+==1741== All heap blocks were freed -- no leaks are possible
+==1741== 
+==1741== For counts of detected and suppressed errors, rerun with: -v
+==1741== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo "dartmouth computer? science" | valgrind ./querier ../indexer/testDir ../indexer/result
+==1743== Memcheck, a memory error detector
+==1743== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1743== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1743== Command: ./querier ../indexer/testDir ../indexer/result
+==1743== 
+Error: bad character '?' in query
+==1743== 
+==1743== HEAP SUMMARY:
+==1743==     in use at exit: 0 bytes in 0 blocks
+==1743==   total heap usage: 9,495 allocs, 9,495 frees, 433,085 bytes allocated
+==1743== 
+==1743== All heap blocks were freed -- no leaks are possible
+==1743== 
+==1743== For counts of detected and suppressed errors, rerun with: -v
+==1743== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth com!puter science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1745== Memcheck, a memory error detector
+==1745== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1745== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1745== Command: ./querier ../indexer/testDir ../indexer/result
+==1745== 
+Error: bad character '!' in query
+==1745== 
+==1745== HEAP SUMMARY:
+==1745==     in use at exit: 0 bytes in 0 blocks
+==1745==   total heap usage: 9,495 allocs, 9,495 frees, 433,085 bytes allocated
+==1745== 
+==1745== All heap blocks were freed -- no leaks are possible
+==1745== 
+==1745== For counts of detected and suppressed errors, rerun with: -v
+==1745== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth computer sci//ence | valgrind ./querier ../indexer/testDir ../indexer/result
+==1747== Memcheck, a memory error detector
+==1747== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1747== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1747== Command: ./querier ../indexer/testDir ../indexer/result
+==1747== 
+Error: bad character '/' in query
+==1747== 
+==1747== HEAP SUMMARY:
+==1747==     in use at exit: 0 bytes in 0 blocks
+==1747==   total heap usage: 9,495 allocs, 9,495 frees, 433,087 bytes allocated
+==1747== 
+==1747== All heap blocks were freed -- no leaks are possible
+==1747== 
+==1747== For counts of detected and suppressed errors, rerun with: -v
+==1747== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+#syntax cases that should fail
+echo and dartmouth computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1749== Memcheck, a memory error detector
+==1749== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1749== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1749== Command: ./querier ../indexer/testDir ../indexer/result
+==1749== 
+Error: 'and' cannot be first
+==1749== 
+==1749== HEAP SUMMARY:
+==1749==     in use at exit: 0 bytes in 0 blocks
+==1749==   total heap usage: 9,495 allocs, 9,495 frees, 433,091 bytes allocated
+==1749== 
+==1749== All heap blocks were freed -- no leaks are possible
+==1749== 
+==1749== For counts of detected and suppressed errors, rerun with: -v
+==1749== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo or dartmouth computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1751== Memcheck, a memory error detector
+==1751== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1751== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1751== Command: ./querier ../indexer/testDir ../indexer/result
+==1751== 
+Error: 'or' cannot be first
+==1751== 
+==1751== HEAP SUMMARY:
+==1751==     in use at exit: 0 bytes in 0 blocks
+==1751==   total heap usage: 9,495 allocs, 9,495 frees, 433,089 bytes allocated
+==1751== 
+==1751== All heap blocks were freed -- no leaks are possible
+==1751== 
+==1751== For counts of detected and suppressed errors, rerun with: -v
+==1751== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth and and computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1753== Memcheck, a memory error detector
+==1753== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1753== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1753== Command: ./querier ../indexer/testDir ../indexer/result
+==1753== 
+Error: 'and' and 'and' cannot be adjacent
+==1753== 
+==1753== HEAP SUMMARY:
+==1753==     in use at exit: 0 bytes in 0 blocks
+==1753==   total heap usage: 9,495 allocs, 9,495 frees, 433,099 bytes allocated
+==1753== 
+==1753== All heap blocks were freed -- no leaks are possible
+==1753== 
+==1753== For counts of detected and suppressed errors, rerun with: -v
+==1753== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth or or computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1755== Memcheck, a memory error detector
+==1755== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1755== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1755== Command: ./querier ../indexer/testDir ../indexer/result
+==1755== 
+Error: 'or' and 'or' cannot be adjacent
+==1755== 
+==1755== HEAP SUMMARY:
+==1755==     in use at exit: 0 bytes in 0 blocks
+==1755==   total heap usage: 9,495 allocs, 9,495 frees, 433,095 bytes allocated
+==1755== 
+==1755== All heap blocks were freed -- no leaks are possible
+==1755== 
+==1755== For counts of detected and suppressed errors, rerun with: -v
+==1755== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth computer science and | valgrind ./querier ../indexer/testDir ../indexer/result
+==1757== Memcheck, a memory error detector
+==1757== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1757== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1757== Command: ./querier ../indexer/testDir ../indexer/result
+==1757== 
+Error: 'and' cannot be last
+==1757== 
+==1757== HEAP SUMMARY:
+==1757==     in use at exit: 0 bytes in 0 blocks
+==1757==   total heap usage: 9,495 allocs, 9,495 frees, 433,091 bytes allocated
+==1757== 
+==1757== All heap blocks were freed -- no leaks are possible
+==1757== 
+==1757== For counts of detected and suppressed errors, rerun with: -v
+==1757== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth computer science or | valgrind ./querier ../indexer/testDir ../indexer/result
+==1759== Memcheck, a memory error detector
+==1759== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1759== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1759== Command: ./querier ../indexer/testDir ../indexer/result
+==1759== 
+Error: 'or' cannot be last
+==1759== 
+==1759== HEAP SUMMARY:
+==1759==     in use at exit: 0 bytes in 0 blocks
+==1759==   total heap usage: 9,495 allocs, 9,495 frees, 433,089 bytes allocated
+==1759== 
+==1759== All heap blocks were freed -- no leaks are possible
+==1759== 
+==1759== For counts of detected and suppressed errors, rerun with: -v
+==1759== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth and or computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1761== Memcheck, a memory error detector
+==1761== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1761== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1761== Command: ./querier ../indexer/testDir ../indexer/result
+==1761== 
+Error: 'or' and 'and' cannot be adjacent
+==1761== 
+==1761== HEAP SUMMARY:
+==1761==     in use at exit: 0 bytes in 0 blocks
+==1761==   total heap usage: 9,495 allocs, 9,495 frees, 433,097 bytes allocated
+==1761== 
+==1761== All heap blocks were freed -- no leaks are possible
+==1761== 
+==1761== For counts of detected and suppressed errors, rerun with: -v
+==1761== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+echo dartmouth or and computer science | valgrind ./querier ../indexer/testDir ../indexer/result
+==1763== Memcheck, a memory error detector
+==1763== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1763== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1763== Command: ./querier ../indexer/testDir ../indexer/result
+==1763== 
+Error: 'and' and 'or' cannot be adjacent
+==1763== 
+==1763== HEAP SUMMARY:
+==1763==     in use at exit: 0 bytes in 0 blocks
+==1763==   total heap usage: 9,495 allocs, 9,495 frees, 433,097 bytes allocated
+==1763== 
+==1763== All heap blocks were freed -- no leaks are possible
+==1763== 
+==1763== For counts of detected and suppressed errors, rerun with: -v
+==1763== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+cd ../indexer
+rm -rf testDir
+
+
+

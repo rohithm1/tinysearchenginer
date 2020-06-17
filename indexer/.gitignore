@@ -1,0 +1,6 @@
+indexer
+indexer.o
+indextest
+indextest.o
+test
+.DS_Store

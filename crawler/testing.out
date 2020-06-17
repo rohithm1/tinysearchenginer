@@ -1,0 +1,201 @@
+bash -v testing.sh 
+#!/bin/bash
+# testing.sh - bash file for crawler.c
+# Rohith Mandavilli, CS50 - David Kotz, April 2019
+# Description: We need to test the thoroughness of our crawler.c Code
+
+
+# Normal code commands to demonstrate functionality
+
+#crawl at 0 depth
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html test 0
+ 0   Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#1 depth
+./crawler http://old-www.cs.dartmouth.edu/~campbell/index.html test 1
+ 0   Fetched: http://old-www.cs.dartmouth.edu/~campbell/index.html
+ 0  Scanning: http://old-www.cs.dartmouth.edu/~campbell/index.html
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/./
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 0     Found: http://dartnets.cs.dartmouth.edu/
+ 0  IgnExtrn: http://dartnets.cs.dartmouth.edu/
+ 0     Found: http://studentlife.cs.dartmouth.edu/
+ 0  IgnExtrn: http://studentlife.cs.dartmouth.edu/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0  IgnExtrn: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0     Found: http://studentlife.cs.dartmouth.edu/
+ 0  IgnExtrn: http://studentlife.cs.dartmouth.edu/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0  IgnExtrn: https://scholar.google.com/citations?user=rthco5oAAAAJ&hl=en
+ 0     Found: https://goo.gl/maps/GEbhZkhe7Z72
+ 0  IgnExtrn: https://goo.gl/maps/GEbhZkhe7Z72
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/./
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 0     Found: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 0    IgnDup: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-2/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-3/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-8/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-7/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-4/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-5/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/page-6/
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~campbell/
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+./crawler http://old-www.cs.dartmouth.edu/~cs50/index.html test 1
+ 0   Fetched: http://old-www.cs.dartmouth.edu/~cs50/index.html
+ 0  Scanning: http://old-www.cs.dartmouth.edu/~cs50/index.html
+ 0     Found: https://www.cs.dartmouth.edu/~cs50/
+ 0  IgnExtrn: https://www.cs.dartmouth.edu/~cs50/
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#2 depth
+./crawler http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html test 2
+ 0   Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html
+ 0  Scanning: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html
+ 0     Found: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/A.html
+ 1   Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/A.html
+ 1  Scanning: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/A.html
+ 1     Found: https://en.wikipedia.org/wiki/Algorithm
+ 1  IgnExtrn: https://en.wikipedia.org/wiki/Algorithm
+ 1     Found: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/B.html
+ 1     Found: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html
+ 1    IgnDup: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/index.html
+ 2   Fetched: http://old-www.cs.dartmouth.edu/~cs50/data/tse/letters/B.html
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+# Check argument boundary cases
+
+#bad pathname
+./crawler http://old-www.cs.dartmouth.edu/~campbell/index.html what 1
+Pathname doesn't exist
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#extra random arguments
+./crawler http://old-www.cs.dartmouth.edu/~campbell/index.html test 1 hello hello
+Incorrect arg amount
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#bad depth
+./crawler http://old-www.cs.dartmouth.edu/~campbell/index.html test -4
+Maxdepth is below 0 or greater than 10
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+./crawler http://old-www.cs.dartmouth.edu/~campbell/index.html test 14
+Maxdepth is below 0 or greater than 10
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#external URL
+./crawler http://www.youtube.com/ test 1
+URL is not valid/'internal' to the domain
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#nonexistent server
+./crawler http://lolthisdoesntexist/ test 1
+URL is not valid/'internal' to the domain
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#nonexistent page
+./crawler http://www.youtube.com/lolthisdoesntexist test 1
+URL is not valid/'internal' to the domain
+
+make cleanTests
+make[1]: Entering directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+rm -rf testDir/*
+make[1]: Leaving directory `/home/vagrant/cs50-dev/tse-rohithm1/crawler'
+
+#internal URL with nonexistent page
+valgrind ./crawler http://old-www.cs.dartmouth.edu/~campbell/inesesdex.html test 1
+==1772== Memcheck, a memory error detector
+==1772== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1772== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==1772== Command: ./crawler http://old-www.cs.dartmouth.edu/~campbell/inesesdex.html test 1
+==1772== 
+HTML fetch failure for URL http://old-www.cs.dartmouth.edu/~campbell/inesesdex.html!
+==1772== 
+==1772== HEAP SUMMARY:
+==1772==     in use at exit: 0 bytes in 0 blocks
+==1772==   total heap usage: 184 allocs, 184 frees, 14,868 bytes allocated
+==1772== 
+==1772== All heap blocks were freed -- no leaks are possible
+==1772== 
+==1772== For counts of detected and suppressed errors, rerun with: -v
+==1772== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+

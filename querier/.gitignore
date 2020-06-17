@@ -1,0 +1,5 @@
+querier
+querier.o
+test
+fuzzquery.c
+.DS_Store
